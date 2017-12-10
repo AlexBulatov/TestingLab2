@@ -2,7 +2,7 @@ package Node
 
 object Main {
   def main(args: Array[String]): Unit = {
-    val integerList = new ListArray[Integer]
+    val integerList: ListArray[Int] = new ListArray[Int](10)
     integerList.add(10)
     integerList.add(21)
     integerList.add(1)

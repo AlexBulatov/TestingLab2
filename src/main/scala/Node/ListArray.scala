@@ -1,13 +1,8 @@
 package Node
 
-import java.util
-import java.util.Collections
-
-import Node.Node
-
 import scala.collection.mutable.ArrayBuffer
 
-class ListArray[T <: Comparable[T]](val nodeSize: Int) {
+class ListArray[T <: Ordered[T]](val nodeSize: Int) {
 
   tail = head
   private var head: Node[T] = null
