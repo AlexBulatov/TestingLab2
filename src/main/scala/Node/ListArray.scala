@@ -2,13 +2,14 @@ package Node
 
 import scala.collection.mutable.ArrayBuffer
 
-class ListArray[T <: Ordered[T]](val nodeSize: Int) {
+class ListArray[T <% Ordered[T]](val nodeSize: Int) {
 
-  tail = head
+
   private var head: Node[T] = null
   private var tail: Node[T] = null
   private var size: Int = 0
   head = new Node[T](nodeSize)
+  tail = head
   def this(){
     this(10)
   }
