@@ -4,13 +4,12 @@ import scala.collection.mutable.ArrayBuffer
 
 class ListArray[T <% Ordered[T]](val nodeSize: Int) {
 
-
   private var head: Node[T] = null
   private var tail: Node[T] = null
   private var size: Int = 0
   head = new Node[T](nodeSize)
   tail = head
-  def this(){
+  def this() {
     this(10)
   }
 
@@ -21,7 +20,7 @@ class ListArray[T <% Ordered[T]](val nodeSize: Int) {
   def add(value: T): Unit = {
     try {
       tail.add(value)
-      size=size+1
+      size += 1
     } catch {
       case e: ArrayStoreException =>
         val newNode = new Node[T](nodeSize)
@@ -58,14 +57,9 @@ class ListArray[T <% Ordered[T]](val nodeSize: Int) {
     val nodeNumber = index / nodeSize
     var node = head
     var i = 0
-    while ( {
-      i < nodeNumber
-    }) {
+    while (i < nodeNumber) {
       node = node.getNext
-
-      {
-        i += 1; i
-      }
+      i += 1
     }
     node.getAt(index % nodeSize)
   }
@@ -79,14 +73,9 @@ class ListArray[T <% Ordered[T]](val nodeSize: Int) {
     val nodeNumber = index / nodeSize
     var node = head
     var i = 0
-    while ( {
-      i < nodeNumber
-    }) {
+    while (i < nodeNumber) {
       node = node.getNext
-
-      {
-        i += 1; i
-      }
+      i += 1
     }
     node.setAt(value, index % nodeSize)
   }
@@ -101,11 +90,9 @@ class ListArray[T <% Ordered[T]](val nodeSize: Int) {
 
   def sort(desc: Boolean): Unit = {
     val asArr = this.toArray
-    if (desc)   asArr.sortWith(_.compareTo(_)<0)//.sort(asArr, Collections.reverseOrder)
-    else asArr.sortWith(_.compareTo(_)>0)
-
     this.clear()
-    asArr.foreach(this.add(_))
+    asArr.sortWith(if (desc) _.compareTo(_)>0 else _.compareTo(_)<0)
+      .foreach(this.add(_))
   }
 
   private def connectNodes(left: Node[T], right: Node[T]): Unit = {
@@ -116,18 +103,11 @@ class ListArray[T <% Ordered[T]](val nodeSize: Int) {
   private def toArray: ArrayBuffer[T] = {
     val allValues = new ArrayBuffer[T](size)
     var node = head
-    while ( {
-      node != null
-    }) {
+    while ( node != null ) {
       var i = 0
-      while ( {
-        i < node.size
-      }) {
-        allValues(i) = node.getAt(i)
-
-        {
-          i += 1; i
-        }
+      while ( i < node.getSize ) {
+        allValues+= node.getAt(i)
+        i += 1
       }
       node = node.getNext
     }

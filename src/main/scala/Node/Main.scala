@@ -11,15 +11,10 @@ object Main {
     integerList.add(9)
     integerList.add(-33)
     var i = 0
-    for( i <- 0 to integerList.getSize()){
+    for( i <- 0 to integerList.getSize()-1){
       System.out.print(integerList.getAt(i) + " ")
     }
     integerList.sort(false)
-    //        integerList.removeLast();
-    //        integerList.removeLast();
-    //        integerList.removeLast();
-    //        integerList.removeLast();
-    //        integerList.removeLast();
     System.out.println()
     while (i < integerList.getSize()) {
       System.out.print(integerList.getAt(i) + " ")

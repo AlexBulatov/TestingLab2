@@ -3,12 +3,11 @@ package Node
 import scala.collection.mutable.ArrayBuffer
 
 
-class Node[T <: Ordered[T]](val size: Int) {
+class Node[T <% Ordered[T]](val size: Int) {
 
-  private var arr: ArrayBuffer[T] = null
+  private var arr: ArrayBuffer[T] = new ArrayBuffer[T]()
   private var next: Node[T] = null
   private var prev: Node[T] = null
-  arr = ArrayBuffer[T]()
   next = null
 
   def this(){
@@ -24,12 +23,12 @@ class Node[T <: Ordered[T]](val size: Int) {
   @throws[ArrayStoreException]
   def add(value: T): T = {
     if (arr.size == size) throw new ArrayStoreException
-    arr.+:(value)
+    arr+=value
     value
   }
 
   @throws[ArrayIndexOutOfBoundsException]
-  def getAt(index: Int): T = arr.apply(index)
+  def getAt(index: Int): T = arr(index)
 
   @throws[ArrayIndexOutOfBoundsException]
   def setAt(value: T, index: Int): T = {
